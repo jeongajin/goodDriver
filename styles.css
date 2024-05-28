@@ -215,12 +215,14 @@ p {
 }
 
 .form-check {
-    width: 350px;
+    width: 50%;
+    margin-left:20%;
+    margin-right:20%;
     font-family: Arial, sans-serif;
     font-weight: bold;
     text-align: center;
     margin: 15px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #a759f5;
 }
 
