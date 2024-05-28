@@ -233,6 +233,7 @@ p {
 
 .bluetooth {
     display: flex;
+    margin-top:30%;
     justify-content: center;
     gap: 10px; /* 버튼 간의 간격 조정 */
 }
