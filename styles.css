@@ -216,21 +216,25 @@ p {
 }
 
 .form-check {
-    width: 50%;
-    margin-left: 20%;
+    width: 70%;
+    padding-left: 20%;
+    margin: 10px auto; /* 가운데 정렬 및 간격 조정 */
     font-family: Arial, sans-serif;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     font-size: 1.2em;
     color: #a759f5;
 }
 
 .btn {
     font-size: 2vw;
+    margin: 5px; /* 버튼 간격 조정 */
 }
 
 .bluetooth {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 버튼 간의 간격 조정 */
 }
 
 header {
