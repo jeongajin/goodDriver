@@ -189,7 +189,7 @@ label #cancel {
 h2 {
     position: relative;
     text-align: center;
-    font-size: 6vw;
+    font-size: 9vw;
     font-family: Arial, sans-serif;
     font-weight: bold;
     margin: 0;
@@ -199,7 +199,7 @@ h2 {
 h3 {
     position: relative;
     text-align: center;
-    font-size: 3vw;
+    font-size: 4vw;
     font-family: Arial, sans-serif;
     font-weight: bold;
     margin-top: 20px;
@@ -222,7 +222,7 @@ p {
     font-family: Arial, sans-serif;
     font-weight: bold;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: #a759f5;
 }
 
@@ -263,4 +263,14 @@ main {
 
 section {
     margin-bottom: 20px;
+}
+
+.subtitle{
+    position: relative;
+    text-align: center;
+    font-size: 4vw;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #a759f5;
 }
