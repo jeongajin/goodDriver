@@ -174,8 +174,8 @@ label #cancel {
 .frame {
     width: 70%;
     height: 15%;
-    margin-top: 10%;
-    margin-bottom: 40%;
+    margin-top: 5%;
+    margin-bottom: 25%;
     text-align: center;
 }
 
@@ -233,7 +233,7 @@ p {
 
 .bluetooth {
     display: flex;
-    margin-top:30%;
+    margin-top:50%;
     justify-content: center;
     gap: 10px; /* 버튼 간의 간격 조정 */
 }
