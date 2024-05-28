@@ -231,11 +231,16 @@ p {
     margin: 5px; /* 버튼 간격 조정 */
 }
 
-.bluetooth {
+.bluetooth_button {
     display: flex;
     margin-top:50%;
     justify-content: center;
     gap: 10px; /* 버튼 간의 간격 조정 */
+}
+
+.bluetooth{
+    justify-content: center;
+    text-align: center;
 }
 
 header {
