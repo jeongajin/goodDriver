@@ -1,5 +1,3 @@
-/* styles.css */
-
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +29,7 @@ body {
 }
 
 .sidebar header {
-    font-size: 28px;
+    font-size: 2.5vw; /* 뷰포트 너비의 2.5% 크기 */
     color: #353535;
     line-height: 70px;
     text-align: center;
@@ -50,6 +48,7 @@ body {
     box-sizing: border-box;
     border-left: 5px solid transparent;
     font-family: 'Lato', sans-serif;
+    font-size: 1.8vw; /* 뷰포트 너비의 1.8% 크기 */
     transition: all .5s ease;
 }
 
@@ -61,7 +60,7 @@ a:hover {
 }
 
 .sidebar a i {
-    font-size: 23px;
+    font-size: 2.2vw; /* 뷰포트 너비의 2.2% 크기 */
     margin-right: 16px;
 }
 
@@ -82,7 +81,7 @@ label #cancel {
     color: #d6adff;
     border-radius: 5px;
     margin: 15px 30px;
-    font-size: 29px;
+    font-size: 2.5vw; /* 뷰포트 너비의 2.5% 크기 */
     background-color: #e8d1ff;
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
         inset -7px -7px 10px 0px rgba(0, 0, 0, .1),
@@ -117,7 +116,7 @@ label #cancel {
     visibility: visible;
 }
 
-@media(max-width : 860px) {
+@media(max-width: 860px) {
     .sidebar {
         height: auto;
         width: 70px;
@@ -169,7 +168,6 @@ label #cancel {
     --gradient-color: #A890FE;
 }
 
-
 .frame {
     width: 50%;
     height: 15%;
@@ -179,7 +177,7 @@ label #cancel {
 }
 
 #bt {
-    font-size: 34px;
+    font-size: 3vw; /* 뷰포트 너비의 3% 크기 */
     font-family: Arial, sans-serif;
     font-weight: bold;
     color: black;
@@ -189,7 +187,7 @@ h2 {
     position: relative;
     text-align: center;
     color: #353535;
-    font-size: 60px;
+    font-size: 6vw; /* 뷰포트 너비의 6% 크기 */
     font-family: Arial, sans-serif;
     font-weight: bold;
     margin: 0;
@@ -200,7 +198,7 @@ h3 {
     position: relative;
     text-align: center;
     color: #353535;
-    font-size: 25px;
+    font-size: 3vw; /* 뷰포트 너비의 3% 크기 */
     font-family: Arial, sans-serif;
     font-weight: bold;
     margin-top: 20px;
@@ -211,7 +209,7 @@ p {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     text-align: center;
-    font-size: 30px;
+    font-size: 2.5vw; /* 뷰포트 너비의 2.5% 크기 */
     color: #d6adff;
     margin: 0;
 }
@@ -223,5 +221,9 @@ p {
     text-align: center;
     margin: 15px;
     font-size: 1.5em;
-    color:#a759f5;
+    color: #a759f5;
+}
+
+.btn {
+    font-size: 2vw; /* 뷰포트 너비의 2% 크기 */
 }
