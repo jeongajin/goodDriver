@@ -1,8 +1,12 @@
 {
   "name": "express",
   "version": "1.0.0",
-  "main": "scripts.js",
+  "main": "setver.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
