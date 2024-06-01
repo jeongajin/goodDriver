@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'html');
 app.use(express.static("public"));
 
-// 서버리스 함수의 특성상, 각 요청을 함수로 처리해야 합니다.
 app.get("/", function (req, res) {
     res.render('index.ejs');
 });
