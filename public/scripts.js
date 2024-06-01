@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(fetchYOLOResults, 5000); // 5초마다 결과 갱신
 
     // 랜덤 YOLO 데이터를 생성하여 서버로 전송하는 함수
-    function simulateYOLOData() {
+    window.simulateYOLOData = function () {
         const randomDetections = Array.from({ length: Math.floor(Math.random() * 5) + 1 }, () => ({
             xmin: Math.random() * 100,
             ymin: Math.random() * 100,
