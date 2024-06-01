@@ -70,4 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 주기적으로 YOLO 결과를 가져오기
     setInterval(fetchYOLOResults, 5000); // 5초마다 결과 갱신
+
+    // 랜덤 YOLO 데이터를 생성하여 서버로 전송하는 함수
+    function simulateYOLOData() {
+        const randomDetections = Array.from({ length: Math.floor(Math.random() * 5) + 1 }, () => ({
+            xmin: Math.random() * 100,
+            ymin: Math.random() * 100,
+            xmax: Math.random() * 100 + 100,
+            ymax: Math.random() * 100 + 100,
+            confidence: Math.random(),
+            class: Math.floor(Math.random() * 80),
+            name: `Class${Math.floor(Math.random() * 80)}`
+        }));
+
+        fetch('/.netlify/functions/yolo-handler', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ detections: randomDetections })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Random YOLO data sent:', data);
+        })
+        .catch(error => console.error('Error sending YOLO data:', error));
+    }
 });
