@@ -86,3 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+fetch('/.netlify/functions/hello')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message); // "Hello, world!"
+        document.getElementById("message").innerText = data.message;
+    });

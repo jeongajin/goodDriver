@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-    res.render('index.ejs');
+    res.render('home.ejs');
 });
 
 app.get("/help", function (req, res) {
