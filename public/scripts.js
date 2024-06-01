@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`${alertType} 알리미 토글: ${isChecked ? '활성화됨' : '비활성화됨'}`);
     }
 
-    // 블루투스 신호를 받아서 알리미 상태를 확인하고 알림을 보내는 함수
+    // 알리미 상태를 확인하고 알림을 보내는 함수
     function checkAlertsAndNotify(signalType) {
         const crosswalkAlert = document.getElementById('crosswalk-alert').checked;
         const pedestrainAlert = document.getElementById('pedestrain-alert').checked;
@@ -45,37 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 블루투스 신호를 받아 처리하는 함수
-    function handleBluetoothSignal(signal) {
-        console.log('Received Bluetooth signal:', signal);
-        checkAlertsAndNotify(signal);
-    }
-
-    // 블루투스 신호를 시뮬레이션하는 함수
-    function simulateBluetoothSignal(signalType) {
-        console.log('Simulating Bluetooth signal:', signalType);
-        handleBluetoothSignal(signalType);
-    }
-
-    // 페이지가 로드될 때 실행될 초기 설정
-    if ('bluetooth' in navigator) {
-        navigator.bluetooth.requestDevice({ acceptAllDevices: true })
-            .then(device => {
-                document.getElementById('status').textContent = '연결됨';
-                device.addEventListener('gattserverdisconnected', () => {
-                    document.getElementById('status').textContent = '연결 대기 중...';
-                });
-                return device.gatt.connect();
-            })
-            .then(server => {
-                // 서비스와 특성의 UUID를 설정하여 실제 신호 수신 구현 필요
-            })
-            .catch(error => {
-                console.error('Bluetooth 연결 실패:', error);
-                document.getElementById('status').textContent = '연결 실패';
-            });
-    } else {
-        console.error('이 브라우저는 블루투스를 지원하지 않습니다.');
+    // 신호를 시뮬레이션하는 함수
+    function simulateSignal(signalType) {
+        console.log('Simulating signal:', signalType);
+        checkAlertsAndNotify(signalType);
     }
 
     Notification.requestPermission().then(permission => {
@@ -86,10 +59,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-fetch('/.netlify/functions/hello')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.message); // "Hello, world!"
-        document.getElementById("message").innerText = data.message;
-    });
