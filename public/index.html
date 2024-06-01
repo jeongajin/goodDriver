@@ -44,6 +44,7 @@
         <p class="subtitle"> Good Driver! </p>
         <h2>교통 도우미</h2>
         <p id="bt">현재 상태: <span id="status">연결 대기 중...</span></p>
+        <div id="results"></div> <!-- YOLO 결과를 표시할 영역 -->
     </div>
 
     <div class="mx-auto form-check form-switch">
@@ -72,9 +73,9 @@
 
     <div class="mx-auto bluetooth_button">
         <!-- 블루투스 신호 테스트 버튼 추가 -->
-        <button class="btn btn-primary" onclick="simulateBluetoothSignal('crosswalk')">교차로 신호 테스트</button>
-        <button class="btn btn-primary" onclick="simulateBluetoothSignal('pedestrain')">무단횡단 신호 테스트</button>
-        <button class="btn btn-primary" onclick="simulateBluetoothSignal('buslane')">버스 전용 도로 신호 테스트</button>
+        <button class="btn btn-primary" onclick="simulateSignal('crosswalk')">교차로 신호 테스트</button>
+        <button class="btn btn-primary" onclick="simulateSignal('pedestrain')">무단횡단 신호 테스트</button>
+        <button class="btn btn-primary" onclick="simulateSignal('buslane')">버스 전용 도로 신호 테스트</button>
     </div>
 
     <script src="scripts.js"></script>

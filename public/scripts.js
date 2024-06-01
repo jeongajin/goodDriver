@@ -1,11 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof document !== 'undefined') {
-        // 브라우저 환경에서만 실행될 코드
-        document.getElementById("someElement").innerText = "Hello, World!";
-    } else {
-        console.log("This code is running in a Node.js environment.");
-    }
-
     // 알림 기능을 토글하는 함수
     function toggleAlert(alertType) {
         const isChecked = document.getElementById(`${alertType}-alert`).checked;
@@ -58,6 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('알림 권한이 거부되었습니다.');
         }
     });
+
+    // YOLO 결과를 가져와 표시하는 함수
+    function fetchYOLOResults() {
+        fetch('/.netlify/functions/yolo-handler')
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';
+                data.forEach(result => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `Class: ${result.name}, Confidence: ${result.confidence.toFixed(2)}`;
+                    resultsDiv.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Error fetching YOLO results:', error));
+    }
+
+    // 주기적으로 YOLO 결과를 가져오기
+    setInterval(fetchYOLOResults, 5000); // 5초마다 결과 갱신
 });
-
-
