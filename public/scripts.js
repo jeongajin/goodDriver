@@ -96,4 +96,35 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error sending YOLO data:', error));
     }
+
+    function requestNotificationPermission() {
+        if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('알림 권한이 허용되었습니다.');
+                } else {
+                    console.log('알림 권한이 거부되었습니다.');
+                }
+            });
+        } else {
+            console.log('이 브라우저는 알림을 지원하지 않습니다.');
+        }
+    }
+
+     // 사용자에게 알림을 보내는 함수
+     function sendNotification(title, body) {
+        if (Notification.permission === 'granted') {
+            new Notification(title, { body });
+        } else {
+            console.log('알림 권한이 허용되지 않았습니다.');
+        }
+    }
+
+    // 알림 권한 요청
+    requestNotificationPermission();
+
+    // 임의의 신호 타입을 사용한 알림 테스트
+    document.getElementById('test-notification').addEventListener('click', () => {
+        sendNotification('테스트 알림', '이것은 테스트 알림입니다.');
+    });
 });
