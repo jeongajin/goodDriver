@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 let user_id = 'user1';
 let friend_id = 'user2';
 
-app.listen(8086, function () {
-    console.log("포트 8086으로 서버 대기중 ... ");
+app.listen(8080, function () {
+    console.log("포트 8080으로 서버 대기중 ... ");
 });
 
 app.use(express.static('public'));
