@@ -222,9 +222,17 @@ p {
     font-family: Arial, sans-serif;
     font-weight: bold;
     text-align: left;
-    font-size: 1.3vw;
+    font-size: 1.8vw; /* 기존보다 큰 폰트 크기 */
     color: #a759f5;
 }
+
+.form-check-input {
+    width: 3vw; /* 너비를 더 크게 조정 */
+    height: 3vw; /* 높이를 더 크게 조정 */
+    font-size: 2vw; /* 버튼 안의 텍스트 크기 조정 */
+    padding: 1vw; /* 패딩 추가 */
+}
+
 
 .btn {
     font-size: 2vw;
