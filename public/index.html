@@ -1,81 +1,117 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>교통 도우미</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>교통 도우미</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    function sendTTSMessage(message) {
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(message);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 알림 기능을 토글하는 함수
+      function toggleAlert(alertType) {
+        const isChecked = document.getElementById(`${alertType}-alert`).checked;
+        console.log(`${alertType} 알리미 토글: ${isChecked ? '활성화됨' : '비활성화됨'}`);
+      }
+
+      // 알리미 상태를 확인하고 알림을 보내는 함수
+      function checkAlertsAndNotify(signalType) {
+        const crosswalkAlert = document.getElementById('crosswalk-alert').checked;
+        const pedestrainAlert = document.getElementById('pedestrain-alert').checked;
+        const buslaneAlert = document.getElementById('buslane-alert').checked;
+
+        console.log(`Received signalType: ${signalType}`);
+        console.log(`crosswalkAlert: ${crosswalkAlert}, pedestrainAlert: ${pedestrainAlert}, buslaneAlert: ${buslaneAlert}`);
+
+        if (signalType === 'crosswalk' && crosswalkAlert) {
+          sendTTSMessage('교차로에서 신호를 받았습니다.');
+        } else if (signalType === 'pedestrain' && pedestrainAlert) {
+          sendTTSMessage('무단횡단 신호를 받았습니다.');
+        } else if (signalType === 'buslane' && buslaneAlert) {
+          sendTTSMessage('버스 전용 도로 신호를 받았습니다.');
+        }
+      }
+
+      // 신호를 시뮬레이션하는 함수
+      function simulateSignal(signalType) {
+        console.log('Simulating signal:', signalType);
+        checkAlertsAndNotify(signalType);
+      }
+
+      // 임의의 신호 타입을 사용한 알림 테스트
+      document.getElementById('test-notification').addEventListener('click', () => {
+        sendTTSMessage('이것은 테스트 알림입니다.');
+      });
+    });
+  </script>
 </head>
-
 <body>
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+  <div class="sidebar">
+    <header>Menu</header>
+    <a href="index.html" class="active">
+      <i class="fas fa-qrcode"></i>
+      <span>Home</span>
+    </a>
+    <a href="records.html">
+      <i class="fas fa-stream"></i>
+      <span>Record</span>
+    </a>
+    <a href="help.html">
+      <i class="far fa-question-circle"></i>
+      <span>About</span>
+    </a>
+    <a href="settings.html">
+      <i class="fas fa-sliders-h"></i>
+      <span>Setting</span>
+    </a>
+  </div>
 
-    <input type="checkbox" id="check">
-    <label for="check">
-        <i class="fas fa-bars" id="btn"></i>
-        <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-        <header>Menu</header>
-        <a href="index.html" class="active">
-            <i class="fas fa-qrcode"></i>
-            <span>Home</span>
-        </a>
-        <a href="records.html">
-            <i class="fas fa-stream"></i>
-            <span>Record</span>
-        </a>
-        <a href="help.html">
-            <i class="far fa-question-circle"></i>
-            <span>About</span>
-        </a>
-        <a href="settings.html">
-            <i class="fas fa-sliders-h"></i>
-            <span>Setting</span>
-        </a>
-    </div>
+  <div class="frame">
+    <p class="subtitle"> Good Driver! </p>
+    <h2>교통 도우미</h2>
+    <p id="bt">현재 상태: <span id="status">연결 대기 중...</span></p>
+    <div id="results"></div> <!-- YOLO 결과를 표시할 영역 -->
+  </div>
 
-    <div class="frame">
-        <p class="subtitle"> Good Driver! </p>
-        <h2>교통 도우미</h2>
-        <p id="bt">현재 상태: <span id="status">연결 대기 중...</span></p>
-        <div id="results"></div> <!-- YOLO 결과를 표시할 영역 -->
-    </div>
+  <div class="mx-auto form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="crosswalk-alert" onclick="toggleAlert('crosswalk')" />
+    <label class="form-check-label" for="crosswalk-alert">교차로 알리미</label>
+  </div>
 
-    <div class="mx-auto form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="crosswalk-alert"
-            onclick="toggleAlert('crosswalk')" />
-        <label class="form-check-label" for="crosswalk-alert">교차로 알리미</label>
-    </div>
+  <div class="mx-auto form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="pedestrain-alert" onclick="toggleAlert('pedestrain')" />
+    <label class="form-check-label" for="pedestrain-alert">무단횡단 알리미</label>
+  </div>
 
-    <div class="mx-auto form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="pedestrain-alert"
-            onclick="toggleAlert('pedestrain')" />
-        <label class="form-check-label" for="pedestrain-alert">무단횡단 알리미</label>
-    </div>
+  <div class="mx-auto form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="buslane-alert" onclick="toggleAlert('buslane')" />
+    <label class="form-check-label" for="buslane-alert">버스 전용 도로 알리미</label>
+  </div>
 
-    <div class="mx-auto form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="buslane-alert"
-            onclick="toggleAlert('buslane')" />
-        <label class="form-check-label" for="buslane-alert">버스 전용 도로 알리미</label>
-    </div>
+  <div class="mx-auto form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="violation-record" onclick="toggleAlert('violation')" />
+    <label class="form-check-label" for="violation-record">위반 행위 / 상황 기록</label>
+  </div>
 
-    <div class="mx-auto form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="violation-record"
-            onclick="toggleAlert('violation')" />
-        <label class="form-check-label" for="violation-record">위반 행위 / 상황 기록</label>
-    </div>
+  <div class="mx-auto bluetooth_button">
+    <button class="btn btn-primary" onclick="simulateYOLOData()">YOLO 데이터 전송</button>
+    <button class="btn btn-secondary" id="test-notification">테스트 알림 보내기</button>
+  </div>
 
-    <div class="mx-auto bluetooth_button">
-        <button class="btn btn-primary" onclick="simulateYOLOData()">YOLO 데이터 전송</button>
-        <button class="btn btn-secondary" id="test-notification">테스트 알림 보내기</button>
-    </div>
-    
-    <script src="scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
-
 </html>
